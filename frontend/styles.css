@@ -1,0 +1,24 @@
+/* frontend/styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+form {
+    max-width: 300px;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+}
+input {
+    margin-bottom: 1em;
+    padding: .5em;
+    border: 1px solid #ccc;
+    border-radius: .5em;
+}
+button {
+    padding: .5em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: .5em;
+}
