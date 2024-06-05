@@ -1,22 +1,23 @@
 from flask import Flask, request, jsonify
-import sqlite3, logging
+import sqlite3
+import logging
+
+app = Flask(__name__)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('backend')
-
-app = Flask(__name__)
-
-@app.errorhandler(Exception)
-def handle_exception(e):
-    logger.error(f"An error occurred: {e}")
-    return jsonify({'error': 'An internal error occurred'}), 500
 
 def init_db():
     with sqlite3.connect("data.db") as conn:
         cursor = conn.cursor()
         cursor.execute('''CREATE TABLE IF NOT EXISTS data (id INTEGER PRIMARY KEY, value1 TEXT, value2 TEXT)''')
         conn.commit()
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    logger.error(f"An error occurred: {e}")
+    return jsonify({'error': 'An internal error occurred'}), 500
 
 @app.route('/api/data', methods=['POST'])
 def add_data():
